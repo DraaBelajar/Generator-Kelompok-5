@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+    }
+    #container {
+      background: #fff;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <h1>QR Code Generator</h1>
+    <input type="text" id="linkInput" placeholder="Masukkan link di sini" />
+    <button onclick="generateQRCode()">Generate</button>
+    <div id="qrcode"></div>
+  </div>
+
+  <!-- Library QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    function generateQRCode() {
+      const link = document.getElementById("linkInput").value;
+      const qrContainer = document.getElementById("qrcode");
+
+      // Bersihkan QR lama jika ada
+      qrContainer.innerHTML = "";
+
+      if (link.trim() === "") {
+        alert("Silakan masukkan link terlebih dahulu.");
+        return;
+      }
+
+      // Buat QR Code baru
+      new QRCode(qrContainer, {
+        text: link,
+        width: 200,
+        height: 200
+      });
+    }
+  </script>
+
+</body>
+</html>
